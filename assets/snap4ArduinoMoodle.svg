@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 22.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 315.00001 314.99999"
+   xml:space="preserve"
+   preserveAspectRatio="xMinYMid meet"
+   sodipodi:docname="snap4ArduinoMoodle.svg"
+   width="315"
+   height="315"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   inkscape:export-filename="/home/jguille2/public_html/moodle39/mod/assign/submission/snap/pix/snap4ArduinoMoodle.png"
+   inkscape:export-xdpi="13.409524"
+   inkscape:export-ydpi="13.409524"><metadata
+   id="metadata23"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
+   id="defs21" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1280"
+   inkscape:window-height="636"
+   id="namedview19"
+   showgrid="false"
+   inkscape:zoom="1.3482782"
+   inkscape:cx="150.66204"
+   inkscape:cy="158.1762"
+   inkscape:window-x="0"
+   inkscape:window-y="28"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1"
+   showborder="true" />
+
+<path
+   inkscape:connector-curvature="0"
+   style="fill:#007481;fill-opacity:1;stroke:none;stroke-width:1.99164414"
+   d="m 69.174011,61.997746 c -21.29852,0.22517 -47.70039,11.09531 -81.47069,37.09437 67.92253,-22.5206 92.78638,-24.82458 119.498649,34.853774 0,0 -19.889769,91.78459 -120.183279,178.56335 20.7892799,-9.18193 39.5231,-21.91234 56.01499,-35.91183 23.25647,-3.45938 83.020719,-8.61231 117.133579,-9.14912 27.00052,47.62468 65.85117,69.53384 142.65157,21.53466 C 154.16719,335.63423 177.69502,60.850459 69.174011,61.997746 Z M 123.5708,177.3264 c 7.82648,22.44901 15.40268,44.577 23.96197,64.355 -19.33174,1.21434 -50.980019,3.4643 -75.246809,6.53508 C 105.24895,212.14611 123.5708,177.3264 123.5708,177.3264 Z"
+   id="path9009-3"
+   inkscape:export-filename="/home/bromagosa/Documents/Feina/Arduino/snap4arduino.png"
+   inkscape:export-xdpi="79.790001"
+   inkscape:export-ydpi="79.790001" /><g
+   id="g120"
+   style="display:inline"
+   transform="matrix(0.81051413,0,0,0.81051413,-512.15576,-290.06539)"><g
+     id="g16">
+	
+	
+	
+	
+	
+	
+	<path
+   inkscape:connector-curvature="0"
+   id="path14"
+   d="m 963.98957,698.79466 64.39073,21.11686 1.5416,-1.96805 C 962.54284,644.81239 929.37625,613.34897 839.70469,572.95699 l -1.32086,1.93269 3.88359,5.58279 c -5.87429,3.47741 -20.16439,12.37928 -39.98364,28.32661 -27.65999,8.28098 -37.40684,26.60034 -48.80342,45.36515 17.87718,-11.10704 36.4463,-24.6801 51.31917,-43.23185 19.63384,-15.69116 33.76144,-24.47644 39.31078,-27.72062 l 32.47884,46.11222 c 0,0 -14.04444,9.58717 -25.9,20.68066 15.00674,51.26645 59.02941,82.07771 110.1356,78.51013 2.47432,-11.13051 3.16482,-29.72011 3.16482,-29.72011 z"
+   style="fill:#333333" />
+</g></g></svg>
