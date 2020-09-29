@@ -36,6 +36,11 @@ fi
 
 snapPluginNameString='#snapPluginName#'
 snapPluginNames='snap snap4arduino beetleblocks turtlestitch'
+
+snapPluginVersionString='#snapPluginVersion#'
+#Take it from 'sources/#snapPluginName#Version.txt' files
+
+
 for snapPluginName in $snapPluginNames
 do
 #echo $snapPluginName;
