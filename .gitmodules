@@ -1,0 +1,12 @@
+[submodule "sources/snap"]
+	path = sources/snap
+	url = https://github.com/jmoenig/Snap.git
+[submodule "sources/snap4arduino"]
+	path = sources/snap4arduino
+	url = https://github.com/bromagosa/Snap4Arduino.git
+[submodule "sources/beetleblocks"]
+	path = sources/beetleblocks
+	url = https://github.com/ericrosenbaum/BeetleBlocks.git
+[submodule "sources/turtlestitch"]
+	path = sources/turtlestitch
+	url = https://github.com/backface/turtlestitch.git

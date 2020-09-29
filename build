@@ -1,0 +1,43 @@
+#!/bin/sh
+# This script builds Snap!s assignment submission plugins for Moodle (Snap, Snap4Arduino, Beetleblocks and Turtlestitch)
+# Plugins will be create in /plugins folder. They must be copyied to /your_moodle_site/mod/assign/submission/
+
+print_help() {
+    echo
+    echo "Usage: ./build [OPTION]"
+    echo
+    echo "Where [OPTION] can be:"
+    echo
+    echo "  snap"
+    echo "               Build Snap! plugin"
+    echo
+    echo "  snap4arduino"
+    echo "               Build Snap4Arduino plugin"
+    echo
+    echo "  beetleblocks"
+    echo "               Build Beetleblocks plugin"
+    echo
+    echo "  turtlestitch"
+    echo "               Build Turtlestitch plugin"
+    echo
+    echo "  all"
+    echo "               Build all 5 plugins"
+    echo
+    echo "  help"
+    echo "               Show this info"
+    echo
+}
+
+if [ $# -eq 0 ] || [ "$1" = "help" ];
+then
+    print_help;
+    exit 1;
+fi
+
+snapPluginNameString='#snapPluginName#'
+snapPluginNames='snap snap4arduino beetleblocks turtlestitch'
+for snapPluginName in $snapPluginNames
+do
+#echo $snapPluginName;
+done
+# sed 's/snapPlugin/targetString[x]/g' -r *
