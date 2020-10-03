@@ -2,7 +2,7 @@
 <libraries>
   <library>
     <location>run</location>
-    <name>#snapPluginName# distro</name>
+    <name>#snapPluginApp#</name>
     <license>GPL</license>
     <version>#snapPluginVersion#</version>
     <licenseversion>3.0</licenseversion>

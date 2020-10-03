@@ -1,0 +1,42 @@
+/* Style the navigation bar */
+.snap-navbar_#snapPluginName# {
+    width: 100%;
+    background-color: #555;
+    overflow: auto;
+}
+
+/* Navbar links */
+.snap-navbar_#snapPluginName# a {
+    float: left;
+    text-align: center;
+    padding: 5px 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+}
+
+.snap-navbar_#snapPluginName# a i {
+    color: white;
+}
+
+.snap-navbar_#snapPluginName# a:hover {
+    background-color: #000;
+}
+
+.snap-navbar_#snapPluginName# a:not([class]):focus {
+    background-color: #555;
+}
+
+.snap-navbar_#snapPluginName# img.icon {
+    float: left;
+    padding: 5px 15px;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+}
+
+/* Embedded Snap! iframe classes */
+.snap-iframe-hidden_#snapPluginName# {
+    position: absolute;
+    left: -5000px;
+}

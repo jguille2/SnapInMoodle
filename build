@@ -1,6 +1,9 @@
 #!/bin/sh
-# This script builds Snap!s assignment submission plugins for Moodle (Snap, Snap4Arduino, Beetleblocks and Turtlestitch)
-# Plugins will be create in /plugins folder. They must be copyied to /your_moodle_site/mod/assign/submission/
+# This script builds Snap!s assignment submission plugins for Moodle (Snap!, Snap4Arduino, BeetleBlocks and TurtleStitch)
+# Plugins will be create in /plugins folder. They must be copied to /your_moodle_site/mod/assign/submission/ folder
+
+# Include print_utils
+. ./print_utils
 
 print_help() {
     echo
@@ -8,41 +11,67 @@ print_help() {
     echo
     echo "Where [OPTION] can be:"
     echo
-    echo "  snap"
-    echo "               Build Snap! plugin"
+    echo "  --snap           to build Snap! plugin"
     echo
-    echo "  snap4arduino"
-    echo "               Build Snap4Arduino plugin"
+    echo "  --snap4arduino   to build Snap4Arduino plugin"
     echo
-    echo "  beetleblocks"
-    echo "               Build Beetleblocks plugin"
+    echo "  --beetleblocks   to build Beetleblocks plugin"
     echo
-    echo "  turtlestitch"
-    echo "               Build Turtlestitch plugin"
+    echo "  --turtlestitch   to build Turtlestitch plugin"
     echo
-    echo "  all"
-    echo "               Build all 5 plugins"
+    echo "  --all            to build all 4 plugins"
     echo
-    echo "  help"
-    echo "               Show this info"
+    echo "  --help"
+    echo "  (or no options)  to show this info"
     echo
 }
 
-if [ $# -eq 0 ] || [ "$1" = "help" ];
+if test $# -eq 0;
 then
-    print_help;
-    exit 1;
+    print_help
+    exit 0
+fi
+
+# parse parameters
+while echo $1 | grep ^- > /dev/null; do eval $( echo $1 | sed 's/-//g' | sed 's/=.*//g' | tr -d '\012')=$( echo $1 | sed 's/.*=//g' | tr -d '\012'); shift; done
+
+if test -n "$help"; then
+    print_help
+    exit 0
 fi
 
 snapPluginNameString='#snapPluginName#'
 snapPluginNames='snap snap4arduino beetleblocks turtlestitch'
 
 snapPluginVersionString='#snapPluginVersion#'
-#Take it from 'sources/#snapPluginName#Version.txt' files
+snapPluginAppString='#snapPluginApp#'
+snapPluginTableString='#snapPluginTable#'
 
+buildPlugin() {
+#Params:
+#  $1 snapPluginName
+#  $2 snapPluginVersion
+#  $3 snapPluginApp
+#  $4 snapPluginTable
 
-for snapPluginName in $snapPluginNames
-do
-#echo $snapPluginName;
-done
-# sed 's/snapPlugin/targetString[x]/g' -r *
+    rm -rf plugins/$1
+    mkdir -p plugins/$1
+    cp -r ./snapPlugin/* ./plugins/$1/
+    find ./plugins/$1 -type f | xargs sed -i "s/$snapPluginNameString/$1/g"
+    for file in $(find ./plugins/$1 -type f -name "*$snapPluginNameString*")
+        do
+            new_file=`echo $file | sed "s/$snapPluginNameString/$1/g"`
+            mv -f $file $new_file
+        done
+    find ./plugins/$1 -type f | xargs sed -i "s/$snapPluginVersionString/$2/g"
+    find ./plugins/$1 -type f | xargs sed -i "s/$snapPluginAppString/$3/g"
+    find ./plugins/$1 -type f | xargs sed -i "s/$snapPluginTableString/$4/g"
+    cp ./assets/$1Moodle.png ./plugins/$1/pix/snapMoodle.png
+    cp -r ./sources/$1/* ./plugins/$1/run/
+}
+if test -n "$snap"; then
+    buildPlugin snap '6.2.2 - dev' Snap! snap
+fi
+if test -n "$snap4arduino"; then
+    buildPlugin snap4arduino 6.2 Snap4Arduino snap_s4a
+fi
