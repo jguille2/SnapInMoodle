@@ -42,12 +42,14 @@ if test -n "$help"; then
 fi
 
 pullSource() {
-    echo "Pulling $2 sources"
-    if ! git submodule update --init -- sources/$1; then
+    echo
+    echo "Pulling $2 sources..."
+    echo
+    if ! git submodule deinit -f sources/$1; then
         print_error "Could not set up $2 git submodule.\nPlease make sure that you have access to the Internet and git is installed in your system. You can also copy $2 source manually to 'sources/$1/ folder"
         exit 1
     fi
-
+    git submodule update --init --recursive -- sources/$1
     print_ok "$2 sources up to date."
 }
 
@@ -58,48 +60,36 @@ pullSnapSource() {
 pullSnap4ArduinoSource() {
     pullSource snap4arduino Snap4Arduino
 
-    echo "Building $2 web-chromium version from sources"
-
-#    echo "Pulling Snap! sources in Snap4Arduino distro"
-#    if ! git submodule update --init -- sources/snap4arduino/src/snap; then
-#        print_error "Could not set up Snap! git submodule. inside Snap4Arduino\nPlease make sure that you have access to the Internet and git is installed in your system. You can also copy Snap4Arduino-web distro manually to 'sources/snap4arduino/ folder"
-#        exit 1
-#    fi
-
+    echo
+    echo "Building $2 web-chromium version from sources..."
     echo
     rm -rf tmp
 
     echo "Fetching Snap! sources..."
     if ! cp -R sources/snap4arduino/src/snap tmp; then
-        print_error "Could not find Snap! sources.\nPlease run prepare --snap first."
+        print_error "Problems with Snap! sources inside Snap4Arduino. Check this content."
         exit 1
     fi
-
     echo "Fetching Snap4Arduino examples..."
     cp -R sources/snap4arduino/src/Examples/*.xml tmp/Examples
     cat sources/snap4arduino/src/Examples/EXAMPLES >> tmp/Examples/EXAMPLES
-
     echo "Fetching Snap4Arduino libraries..."
     cp -R sources/snap4arduino/src/libraries/*.xml tmp/libraries
     cat sources/snap4arduino/src/libraries/LIBRARIES >> tmp/libraries/LIBRARIES
-
     echo "Fetching Snap4Arduino Costumes..."
     cp -R sources/snap4arduino/src/Costumes/*.png tmp/Costumes
     cp -R sources/snap4arduino/src/Costumes/*.svg tmp/Costumes
     cat sources/snap4arduino/src/Costumes/COSTUMES >> tmp/Costumes/COSTUMES
     cat sources/snap4arduino/src/Costumes/COSTUMES >> tmp/Costumes/COSTUMES-full
-
     echo "Fetching Snap4Arduino core..."
     if ! cp -R sources/snap4arduino/src/s4a tmp; then
         print_error "Could not find Snap4Arduino core. Please make sure a src/s4a exists and contains the Snap4Arduino core files."
         exit 1
     fi
-        
     echo "Fetching platform-specific sources..."
     if ! cp -R -L sources/snap4arduino/src/platforms/web/chromium/root/* tmp; then
         print_warning "Could not find any platform-specific files for $each."
     fi
-        
     echo "Fetching assets..."
     if ! cp sources/snap4arduino/assets/s4a.ico tmp; then
         print_warning "Could not find Snap4Arduino icon."
@@ -107,16 +97,15 @@ pullSnap4ArduinoSource() {
     if ! cp sources/snap4arduino/assets/s4a_logo_sm.png tmp; then
         print_warning "Could not find Snap4Arduino logo file."
     fi
-        
     echo "Fetching version file..."
     if ! cp sources/snap4arduino/src/version tmp; then
         print_warning "Could not find version file. This may cause the build script to fail further ahead!"
     fi
-
     rm -rf sources/snap4arduino/*
-    cp -r tmp/* sources/snap4arduino/*
+    rm -f sources/snap4arduino/.* 2>/dev/null
+    cp -r tmp/* sources/snap4arduino/
     rm -rf tmp
-
+    print_ok "Snap4Arduino web-chromium version bas been built"
 }
 
 pullBeetleBlocksSource() {
