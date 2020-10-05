@@ -70,7 +70,7 @@ buildPlugin() {
     mkdir plugins/$1/run
     cp -r ./sources/$1/* ./plugins/$1/run/
     echo
-    print_ok "$2 plugin has been built"
+    print_ok "$3 plugin has been built"
 }
 
 buildSnapPlugin() {
