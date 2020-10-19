@@ -37,3 +37,5 @@ $string['privacy:metadata:textpurpose'] = 'El projecte actual de #snapPluginApp#
 $string['privacy:path'] = 'projecte de #snapPluginApp#';
 $string['#snapPluginName#'] = '#snapPluginApp#';
 $string['#snapPluginName#filename'] = '#snapPluginName#project.xml';
+$string['#snapPluginName#_project'] = 'Projecte de #snapPluginApp#';
+$string['#snapPluginName#_embedded'] = '#snapPluginApp# en Moodle';

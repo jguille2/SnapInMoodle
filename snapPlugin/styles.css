@@ -5,8 +5,16 @@
     overflow: auto;
 }
 
-/* Navbar links */
-.snap-navbar_#snapPluginName# a {
+/* Style plugin button */
+.snap-button_#snapPluginName# {
+    width:112px;
+    height:43px;
+    background-color: #555;
+}
+
+/* Navbar and Plugin button links and icons */
+.snap-navbar_#snapPluginName# a,
+.snap-button_#snapPluginName# a {
     float: left;
     text-align: center;
     padding: 5px 15px;
@@ -15,21 +23,26 @@
     font-size: 22px;
 }
 
-.snap-navbar_#snapPluginName# a i {
+.snap-navbar_#snapPluginName# a i,
+.snap-button_#snapPluginName# a i {
     color: white;
 }
 
-.snap-navbar_#snapPluginName# a:hover {
+.snap-navbar_#snapPluginName# a:hover,
+.snap-button_#snapPluginName# a:hover {
     background-color: #000;
 }
 
-.snap-navbar_#snapPluginName# a:not([class]):focus {
+.snap-navbar_#snapPluginName# a:not([class]):focus,
+.snap-button_#snapPluginName# a:not([class]):focus {
     background-color: #555;
+    box-shadow:none;
 }
 
-.snap-navbar_#snapPluginName# img.icon {
+.snap-navbar_#snapPluginName# img.icon,
+.snap-button_#snapPluginName# img.icon {
     float: left;
-    padding: 5px 15px;
+    padding: 5px 0px 5px 15px;
     font-size: 30px;
     width: 30px;
     height: 30px;
@@ -40,3 +53,4 @@
     position: absolute;
     left: -5000px;
 }
+

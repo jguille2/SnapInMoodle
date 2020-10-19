@@ -82,9 +82,10 @@ class assign_submission_#snapPluginName# extends assign_submission_plugin {
         // Add the #snapPluginApp# iframe.
         $mform->addElement('hidden', '#snapPluginName#_xmlproject', $xmlproject);
         $mform->setType('#snapPluginName#_xmlproject', PARAM_RAW);
-
-        $html = $this->get_view_snapframe($submission->userid, $submission->attemptnumber, 'edit', null, '100%', '600px', true);
-        $mform->addElement('html', $html);
+        
+        $html = $this->get_view_snapframe($submission->userid, $submission->attemptnumber, 'edit', null, '100%', '560px', true);
+        $mform->addElement('header', '#snapPluginName#Project', get_string('#snapPluginName#_project', 'assignsubmission_#snapPluginName#'));
+        $mform->addElement('html', $html, $this->get_name(), null, null);
 
         return true;
     }
@@ -203,7 +204,7 @@ class assign_submission_#snapPluginName# extends assign_submission_plugin {
             //$showviewlink = true;
             $xmlproject = $this->get_xmlproject($submission);
             $html = $this->get_view_snapframe($submission->userid, $submission->attemptnumber,
-                'noedit', $xmlproject, '100%', '50px', false, true);
+                'noedit', $xmlproject, '100%', '600px', false, true);
         }
         return $html;
     }
@@ -407,7 +408,7 @@ class assign_submission_#snapPluginName# extends assign_submission_plugin {
         $template->editable = $editable;
         $template->ihidden = $ihidden;
 
-        $html = $OUTPUT->render_from_template('assignsubmission_#snapPluginName#/snapiframe', $template);
+        $html = $OUTPUT->render_from_template('assignsubmission_snap/snapview', $template);
 
         return $html;
     }
