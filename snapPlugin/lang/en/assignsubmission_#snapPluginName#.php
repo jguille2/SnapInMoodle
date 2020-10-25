@@ -39,3 +39,6 @@ $string['#snapPluginName#'] = '#snapPluginApp#';
 $string['#snapPluginName#filename'] = '#snapPluginName#project.xml';
 $string['#snapPluginName#_project'] = '#snapPluginApp# project';
 $string['#snapPluginName#_embedded'] = '#snapPluginApp# embedded in Moodle';
+$string['#snapPluginName#_readonlywarning'] = 'READ-ONLY MODE';
+$string['#snapPluginName#_urlInfo'] = '#snapPluginApp# URL';
+$string['#snapPluginName#_urlInfoDetails'] = 'Your #snapPluginApp# embedded in Moodle is also available directly from your server by this URL:';

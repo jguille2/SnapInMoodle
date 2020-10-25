@@ -23,8 +23,8 @@
  */
 defined ( 'MOODLE_INTERNAL' ) || die ();
 
-$plugin->version = 2020062200;
+$plugin->version = 2020102600;
 $plugin->requires = 2019111800; //Moodle 3.8 and 3.9 suported and tested
 $plugin->component = 'assignsubmission_#snapPluginName#';
-$plugin->release = 'v0.1';
-$plugin->maturity = MATURITY_BETA;
+$plugin->release = 'v1.0 (#snapPluginApp# #snapPluginVersion#)';
+$plugin->maturity = MATURITY_RC;

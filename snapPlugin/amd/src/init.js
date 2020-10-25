@@ -25,77 +25,50 @@
 import $ from 'jquery';
 import * as Str from 'core/str';
 
-let snapMode = 'edit';
-let userid = 0;
-let attemptNumber = 0;
-
-export const init = (xmlProject, mode, user, attempt) => {
-    snapMode = mode;
-    userid = user;
-    attemptNumber = attempt;
-
-    let txt = document.createElement('textarea');
-    txt.innerHTML = xmlProject;
-    initializeProject(txt.value, snapMode, userid, attemptNumber);
+export const preInit = (userid, attemptNumber, loaded, editable, xmlProject) => {
+    var snapFrame = getSnapFrame(userid, attemptNumber);
+    if (snapFrame.contentWindow.onbeforeunload) {
+        snapFrame.contentWindow.onbeforeunload = null;
+        if (loaded) {
+            init(xmlProject, userid, attemptNumber, editable);
+        }
+    } else {
+        preInit(userid, attemptNumber, loaded, editable, xmlProject);
+    }
 };
 
-const initializeProject = (xmlProject, snapMode, userid, attemptNumber) => {
-    // Load the xmlProject (if not empty).
-    const snapIDE = getIDE(xmlProject, snapMode, userid, attemptNumber);
+export const init = (xmlProject, userid, attemptNumber, editable) => {
+    const snapIDE = getIDE(userid, attemptNumber, xmlProject, editable);
     if (!xmlProject) {
         xmlProject = getXMLProject();
     }
-
     if (snapIDE) {
         if (xmlProject) {
             // Update the XML project.
             snapIDE.rawOpenProjectString(xmlProject);
         }
-        if (snapMode == 'embed') {
-            enableEmbedMode(snapIDE);
-        } else if (snapMode == 'edit') {
-            // Register events (to update the hiddent xmlproject field when the form is submitted).
+        if (editable) {
+            // Register events (to update the hidden xmlproject field when the form is submitted).
             const form = getXMLInput().closest('form');
-            registerListenerEvents(form);
-        } else {
-            preventWindowChanges();
+            registerListenerEvents(form, snapIDE);
         }
-
         // Customize #snapPluginApp# and hide Cloud options.
-        customizeSnap();
+        customizeSnap(snapIDE);
     }
 };
 
-const getSnapFrame = (mode, user, attempt) => {
-    if (!mode) {
-        mode = snapMode;
-    }
-    if (!user) {
-        user = userid;
-    }
-    if (!attempt) {
-        attempt = attemptNumber;
-    }
-    return document.getElementById('snap_#snapPluginName#-' + mode + '-' + user + '-' + attempt);
+const getSnapFrame = (userid, attemptNumber) => {
+    return document.getElementById('snap_#snapPluginName#-' + userid + '-' + attemptNumber);
 };
 
-const getIDE = (xmlProject, snapMode, userid, attemptNumber) => {
-    const snapFrame = getSnapFrame(snapMode, userid, attemptNumber);
+const getIDE = (userid, attemptNumber) => {
+    const snapFrame = getSnapFrame(userid, attemptNumber);
     if (snapFrame) {
         const snapWorld = snapFrame.contentWindow.world;
-        if (!snapWorld) {
-            snapFrame.addEventListener(
-                'load',
-                function() {
-                    initializeProject(xmlProject, snapMode, userid, attemptNumber);
-                },
-                true
-            );
-        } else {
+        if (snapWorld) {
             return snapWorld.children[0];
         }
     }
-
     return;
 };
 
@@ -114,52 +87,42 @@ const getXMLInput = () => {
     return $('input[name="#snapPluginName#_xmlproject"]')[0];
 };
 
-const registerListenerEvents = (form) => {
-    form.addEventListener('submit', updateProject);
+const registerListenerEvents = (form, snapIDE) => {
+    form.addEventListener('submit',
+        function() {
+            updateProject(snapIDE);
+        });
 };
 
-const enableEmbedMode = (snapIDE) => {
-    snapIDE.setEmbedMode();
-    snapIDE.toggleAppMode(true);
-    preventWindowChanges();
-};
-
-const preventWindowChanges = () => {
-    const snapFrame = getSnapFrame();
-    snapFrame.contentWindow.onbeforeunload = null;
-};
-
-const customizeSnap = () => {
-    const snapFrame = getSnapFrame();
+const customizeSnap = (snapIDE) => {
     // Adding #snapPluginApp# embedded info to #snapPluginApp# menu
-    snapFrame.contentWindow.IDE_Morph.prototype.sourceSnapMenu = snapFrame.contentWindow.IDE_Morph.prototype.snapMenu;
-    Str.get_string('#snapPluginName#_embedded', 'assignsubmission_#snapPluginName#').then(function(str) {
-        snapFrame.contentWindow.IDE_Morph.prototype.snapMenu = function () {
-            this.sourceSnapMenu();
-            var menu = this.world().activeMenu;
-            menu.addLine();
-            menu.addItem(str);
-            menu.popup(this.world(), this.logo.bottomLeft());
-        };
-    });
-    // Disabling cloud menu options
-    /*snapFrame.contentWindow.IDE_Morph.prototype.cloudMenu = function () {
-        this.showMessage('Cloud unavailable from this Moodle server');
-        return;
-    };*/
-    var ide = snapFrame.contentWindow.world.children[0];
-    ide.controlBar.cloudButton.destroy();
-    ide.controlBar.sourceFixLayout = ide.controlBar.fixLayout;
-    ide.controlBar.fixLayout = () => {
-        ide.controlBar.sourceFixLayout();
-        ide.controlBar.projectButton.setRight(ide.controlBar.settingsButton.left() - 5);
-    };
-    ide.controlBar.fixLayout();
+    if (snapIDE.snapMenu) {
+        snapIDE.sourceSnapMenu = snapIDE.snapMenu;
+        Str.get_string('#snapPluginName#_embedded', 'assignsubmission_#snapPluginName#').then(function(str) {
+            snapIDE.snapMenu = function () {
+                this.sourceSnapMenu();
+                var menu = this.world().activeMenu;
+                menu.addLine();
+                menu.addItem(str);
+                menu.popup(this.world(), this.logo.bottomLeft());
+            };
+        });
+    }
+    // Erasing cloud button
+    if (snapIDE.controlBar.cloudButton) {
+        snapIDE.controlBar.cloudButton.destroy();
+        if (snapIDE.controlBar.projectButton && snapIDE.controlBar.settingsButton) {
+            snapIDE.controlBar.sourceFixLayout = snapIDE.controlBar.fixLayout;
+            snapIDE.controlBar.fixLayout = () => {
+                snapIDE.controlBar.sourceFixLayout();
+                snapIDE.controlBar.projectButton.setRight(snapIDE.controlBar.settingsButton.left() - 5);
+            };
+            snapIDE.controlBar.fixLayout();
+        }
+    }
 };
 
-const updateProject = () => {
+const updateProject = (snapIDE) => {
     const xmlProject = getXMLInput();
-    const snapIDE = getIDE(xmlProject);
     xmlProject.value = snapIDE.serializer.serialize(snapIDE.stage);
-    preventWindowChanges();
 };

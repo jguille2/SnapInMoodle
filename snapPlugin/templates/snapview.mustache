@@ -20,41 +20,43 @@
     This template will render an iframe for #snapPluginApp# content.
 
     Variables required for this template:
-    * snapurl - The base Snap! URL.
-    * snapmode - The mode to display this Snap! project: with the full editor, embeded...
-    * userid - The creator of this Snap! content.
+    * snapurl - The base #snapPluginApp# URL.
+    * loaded - The mode to display this #snapPluginApp# project
+    * userid - The creator of this #snapPluginApp# content.
     * attempt - The attempt number.
-    * width - Iframe width.
-    * height - Iframe height.
+    * width - Container width.
+    * height - Container height.
     * #snapPluginName#_xmlproject - The XML project to load.
+    * editable - Edit mode.
 
     Example context (json):
     {
         "snapurl": "http://myserver/mod/assign/submission/#snapPluginName#/run/index.html",
-        "snapmode": "embed",
+        "loaded": false,
         "userid": "3",
         "attempt": "1",
         "width": "100%",
-        "height": "400px"
-        "#snapPluginName#_xmlproject": "<project name="projectName" app="#snapPluginApp# 1.0, http://snap.berkeley.edu" version="1"><notes>...</notes></project>"
+        "height": "400px",
+        "#snapPluginName#_xmlproject": "<project name="projectName" app="#snapPluginApp# 1.0, http://snap.berkeley.edu" version="1"><notes>...</notes></project>",
+        "editable": false
     }
 
 }}
-<div class="snap-button_#snapPluginName#{{#editable}} snap-iframe-hidden_#snapPluginName#"{{/editable}}">
-    <span id="snapButton_#snapPluginName#-{{snapmode}}-{{userid}}-{{attempt}}" onclick="require(['assignsubmission_#snapPluginName#/view'], function(View) {View.start('{{#snapPluginName#_xmlproject}}','{{snapmode}}', '{{userid}}', '{{attempt}}');});">{{#pix}} snapMoodle, assignsubmission_snap, #snapPluginApp# in Moodle {{/pix}}</span>
-    <a href="#" id="play_#snapPluginName#-{{snapmode}}-{{userid}}-{{attempt}}" onclick="require(['assignsubmission_#snapPluginName#/view'], function(View) {View.start('{{#snapPluginName#_xmlproject}}','{{snapmode}}', '{{userid}}', '{{attempt}}');}); return false;"><i id="playicon_snap-{{snapmode}}-{{userid}}-{{attempt}}" class="fa fa-fw fa-play"></i></a>
+<div class="snap-button_#snapPluginName#{{#loaded}} snap-hidden_#snapPluginName#"{{/loaded}}">
+    <span id="snapButton_#snapPluginName#-{{userid}}-{{attempt}}" onclick="require(['assignsubmission_#snapPluginName#/view'], function(View) {View.start('{{#snapPluginName#_xmlproject}}', '{{userid}}', '{{attempt}}', {{#editable}}true{{/editable}}{{^editable}}false{{/editable}});});">{{#pix}} snapMoodle, assignsubmission_#snapPluginName#, #snapPluginApp# in Moodle {{/pix}}</span>
+    <a href="#" id="play_#snapPluginName#-{{userid}}-{{attempt}}" onclick="require(['assignsubmission_#snapPluginName#/view'], function(View) {View.start('{{#snapPluginName#_xmlproject}}', '{{userid}}', '{{attempt}}', {{#editable}}true{{/editable}}{{^editable}}false{{/editable}});}); return false;"><i id="playicon_snap-{{userid}}-{{attempt}}" class="fa fa-fw fa-play"></i></a>
 </div>
 
-<div id="snapContainer_#snapPluginName#-{{snapmode}}-{{userid}}-{{attempt}}"{{^editable}} class="snap-iframe-hidden_#snapPluginName#"{{/editable}} style="width: {{width}}; height: {{height}}; overflow: auto;">
-    <div id="snapNavBar_#snapPluginName#-{{snapmode}}-{{userid}}-{{attempt}}" class="snap-navbar_#snapPluginName#" style="width:910px">
-        <span onclick="require(['assignsubmission_#snapPluginName#/view'], function(View) {View.toogleFullScreen('{{snapmode}}', '{{userid}}', '{{attempt}}');});">{{#pix}} snapMoodle, assignsubmission_#snapPluginName#, #snapPluginApp# in Moodle {{/pix}}</span>
-        <a href="#" id="togglingFS_#snapPluginName#-{{snapmode}}-{{userid}}-{{attempt}}" onclick="require(['assignsubmission_#snapPluginName#/view'], function(View) {View.toogleFullScreen('{{snapmode}}', '{{userid}}', '{{attempt}}');}); return false;"><i id="togglingFSicon_#snapPluginName#-{{snapmode}}-{{userid}}-{{attempt}}" class="fa fa-fw fa-expand"></i></a>
+<div id="snapContainer_#snapPluginName#-{{userid}}-{{attempt}}"{{^loaded}} class="snap-hidden_#snapPluginName#"{{/loaded}} style="width: {{width}}; height: {{height}}; overflow: auto;">
+    <div id="snapNavBar_#snapPluginName#-{{userid}}-{{attempt}}" class="snap-navbar_#snapPluginName#" style="width:910px">
+        <span onclick="require(['assignsubmission_#snapPluginName#/view'], function(View) {View.toogleFullScreen('{{userid}}', '{{attempt}}');});">{{#pix}} snapMoodle, assignsubmission_#snapPluginName#, #snapPluginApp# in Moodle {{/pix}}</span>
+        <a href="#" id="togglingFS_#snapPluginName#-{{userid}}-{{attempt}}" onclick="require(['assignsubmission_#snapPluginName#/view'], function(View) {View.toogleFullScreen('{{userid}}', '{{attempt}}');}); return false;"><i id="togglingFSicon_#snapPluginName#-{{userid}}-{{attempt}}" class="fa fa-fw fa-expand"></i></a>
         {{#editable}}<a href="#" onclick="document.getElementById('id_submitbutton').click()"><i class="fa fa-fw fa-save"></i></a>{{/editable}}
-        {{^editable}}<span class="fa-fw fa-stack" style="color:white;font-size:18px;text-align: center;padding: 5px 15px;"><i class="fa fa-stack-1x fa-save"></i><i class="fa fa-stack-2x fa-ban" style="color:rgba(255,255,255,0.5)"></i></span>{{/editable}}
+        {{^editable}}<span class="snap-readonlyWarning_#snapPluginName#">{{#str}} #snapPluginName#_readonlywarning, assignsubmission_#snapPluginName# {{/str}}</span>{{/editable}}
     </div>
-    <iframe src="{{snapurl}}" id="snap_#snapPluginName#-{{snapmode}}-{{userid}}-{{attempt}}" style="width:910px; height: 500px">
+    <iframe src="{{snapurl}}" id="snap_#snapPluginName#-{{userid}}-{{attempt}}" style="width:910px; height: 500px">
     </iframe>
 </div>
-{{#editable}}{{#js}}
-    require(['assignsubmission_#snapPluginName#/init'], function(Init) {Init.init('{{#snapPluginName#_xmlproject}}', '{{snapmode}}', '{{userid}}', '{{attempt}}');});
-{{/js}}{{/editable}}
+{{#js}}
+    require(['assignsubmission_#snapPluginName#/init'], function(Init) {Init.preInit('{{userid}}', '{{attempt}}', {{#loaded}}true{{/loaded}}{{^loaded}}false{{/loaded}}, {{#editable}}true{{/editable}}{{^editable}}false{{/editable}}, '{{#snapPluginName#_xmlproject}}');});
+{{/js}}

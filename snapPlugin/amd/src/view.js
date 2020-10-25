@@ -23,23 +23,22 @@
  */
 import * as Init from './init';
 
-export const start = (xmlproject, snapmode, userid, attempt) => {
-    Init.init(xmlproject, snapmode, userid, attempt);
-    var pluginButton = document.getElementById('snapButton_#snapPluginName#-' + snapmode + '-' + userid + '-' + attempt),
-        pluginPlay = document.getElementById('play_#snapPluginName#-' + snapmode + '-' + userid + '-' + attempt),
+export const start = (xmlproject, userid, attempt, editable) => {
+    Init.init(xmlproject, userid, attempt, editable);
+    var pluginButton = document.getElementById('snapButton_#snapPluginName#-' + userid + '-' + attempt),
+        pluginPlay = document.getElementById('play_#snapPluginName#-' + userid + '-' + attempt),
         newOnClick = "require(['assignsubmission_#snapPluginName#/view'], function(View) {View.toogleFullScreen('" +
-            snapmode + "', '" +
             userid + "', '" +
             attempt + "');}); return false;";
     pluginButton.setAttribute('onclick', newOnClick);
     pluginPlay.setAttribute('onclick', newOnClick);
-    toogleFullScreen(snapmode, userid, attempt);
+    toogleFullScreen(userid, attempt);
 };
-export const toogleFullScreen = (snapmode, userid, attempt) => {
+export const toogleFullScreen = (userid, attempt) => {
     if (!isFullScreen()) {
-        enterFS(snapmode, userid, attempt);
+        enterFS(userid, attempt);
     } else {
-        exitFS(snapmode, userid, attempt);
+        exitFS(userid, attempt);
     }
 };
 const isFullScreen = () => {
@@ -48,11 +47,11 @@ const isFullScreen = () => {
         (document.mozFullScreen || document.webkitIsFullScreen);
 };
 
-const enterFS = (snapmode, userid, attempt) => {
-    var cont = document.getElementById('snapContainer_#snapPluginName#-' + snapmode + '-' + userid + '-' + attempt),
-        toggler = document.getElementById('togglingFSicon_#snapPluginName#-' + snapmode + '-' + userid + '-' + attempt),
-        iframe = document.getElementById('snap_#snapPluginName#-' + snapmode + '-' + userid + '-' + attempt),
-        navBar = document.getElementById('snapNavBar_#snapPluginName#-' + snapmode + '-' + userid + '-' + attempt);
+const enterFS = (userid, attempt) => {
+    var cont = document.getElementById('snapContainer_#snapPluginName#-' + userid + '-' + attempt),
+        toggler = document.getElementById('togglingFSicon_#snapPluginName#-' + userid + '-' + attempt),
+        iframe = document.getElementById('snap_#snapPluginName#-' + userid + '-' + attempt),
+        navBar = document.getElementById('snapNavBar_#snapPluginName#-' + userid + '-' + attempt);
     if (cont.requestFullscreen) {
         cont.requestFullscreen();
     } else if (cont.mozRequestFullScreen) {
@@ -67,26 +66,18 @@ const enterFS = (snapmode, userid, attempt) => {
     navBar.style.width = '100%';
     toggler.classList.remove('fa-expand');
     toggler.classList.add('fa-compress');
-/*    if (cont.classList.contains('snap-iframe-hidden_#snapPluginName#')) {
-       cont.classList.remove('snap-iframe-hidden_#snapPluginName#');
-       cont.classList.add('snap-iframe-show_#snapPluginName#');
-    }*/
 };
 
-const exitFS = (snapmode, userid, attempt) => {
-    var //cont = document.getElementById('snapContainer_#snapPluginName#-' + snapmode + '-' + userid + '-' + attempt),
-        toggler = document.getElementById('togglingFSicon_#snapPluginName#-' + snapmode + '-' + userid + '-' + attempt),
-        iframe = document.getElementById('snap_#snapPluginName#-' + snapmode + '-' + userid + '-' + attempt),
-        navBar = document.getElementById('snapNavBar_#snapPluginName#-' + snapmode + '-' + userid + '-' + attempt);
+const exitFS = (userid, attempt) => {
+    var toggler = document.getElementById('togglingFSicon_#snapPluginName#-' + userid + '-' + attempt),
+        iframe = document.getElementById('snap_#snapPluginName#-' + userid + '-' + attempt),
+        navBar = document.getElementById('snapNavBar_#snapPluginName#-' + userid + '-' + attempt);
     iframe.style.width = '910px';
     iframe.style.height = '500px';
     navBar.style.width = '910px';
     toggler.classList.remove('fa-compress');
     toggler.classList.add('fa-expand');
-/*    if (cont.classList.contains('snap-iframe-show_#snapPluginName#')) {
-        cont.classList.remove('snap-iframe-show_#snapPluginName#');
-        cont.classList.add('snap-iframe-hidden_#snapPluginName#');
-    }*/
+
     if (document.exitFullScreen) {
         document.exitFullScreen();
     } else if (document.webkitExitFullscreen) {

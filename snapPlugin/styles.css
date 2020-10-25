@@ -48,8 +48,17 @@
     height: 30px;
 }
 
-/* Embedded Snap! iframe classes */
-.snap-iframe-hidden_#snapPluginName# {
+.snap-readonlyWarning_#snapPluginName# {
+    float: left;
+    color: white;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    padding-top: 14px;
+}
+
+/* To hide button or #snapPluginName# container */
+.snap-hidden_#snapPluginName# {
     position: absolute;
     left: -5000px;
 }

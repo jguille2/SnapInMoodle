@@ -39,3 +39,6 @@ $string['#snapPluginName#'] = '#snapPluginApp#';
 $string['#snapPluginName#filename'] = '#snapPluginName#project.xml';
 $string['#snapPluginName#_project'] = 'Projecte de #snapPluginApp#';
 $string['#snapPluginName#_embedded'] = '#snapPluginApp# en Moodle';
+$string['#snapPluginName#_readonlywarning'] = 'MODE DE LECTURA';
+$string['#snapPluginName#_urlInfo'] = 'URL de #snapPluginApp#';
+$string['#snapPluginName#_urlInfoDetails'] = 'La distribució de #snapPluginApp# utilitzada per Moodle també estarà disponible directament al vostre servidor per la URL:';

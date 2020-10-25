@@ -40,28 +40,6 @@ class assign_submission_#snapPluginName# extends assign_submission_plugin {
     }
 
     /**
-     * Get the settings for #snapPluginName# submission plugin. They are displayed in the assignment edit form.
-     *
-     * @param MoodleQuickForm $mform The form to add elements to
-     * @return void
-     */
-    public function get_settings(MoodleQuickForm $mform): void {
-        // TODO: Add iframe size (width/height).
-    }
-
-    /**
-     * Save the settings for #snapPluginName# submission plugin.
-     *
-     * @param stdClass $data
-     * @return bool
-     */
-    public function save_settings(stdClass $data): bool {
-        // TODO: Save settings.
-
-        return true;
-    }
-
-    /**
      * Add form elements for settings.
      *
      * @param mixed $submission can be null
@@ -83,7 +61,7 @@ class assign_submission_#snapPluginName# extends assign_submission_plugin {
         $mform->addElement('hidden', '#snapPluginName#_xmlproject', $xmlproject);
         $mform->setType('#snapPluginName#_xmlproject', PARAM_RAW);
         
-        $html = $this->get_view_snapframe($submission->userid, $submission->attemptnumber, 'edit', null, '100%', '560px', true);
+        $html = $this->get_view_snapframe($submission->userid, $submission->attemptnumber, true, null, '100%', '560px', true);
         $mform->addElement('header', '#snapPluginName#Project', get_string('#snapPluginName#_project', 'assignsubmission_#snapPluginName#'));
         $mform->addElement('html', $html, $this->get_name(), null, null);
 
@@ -200,27 +178,13 @@ class assign_submission_#snapPluginName# extends assign_submission_plugin {
 
         $snapsubmission = $this->get_snap_submission($submission->id);
         if ($snapsubmission) {
-            // Only shows the #snapPluginApp# embedded toolbar and loads the #snapPluginApp# project inside the hidden iframe. This toolbar links to the fullscreen project.
-            //$showviewlink = true;
+            // Only shows the #snapPluginApp# tutton and loads the #snapPluginApp# source.
+            // It links to the fullscreen project, loading the project with the first link click.
+            $showviewlink = false;
             $xmlproject = $this->get_xmlproject($submission);
             $html = $this->get_view_snapframe($submission->userid, $submission->attemptnumber,
-                'noedit', $xmlproject, '100%', '600px', false, true);
+                false, $xmlproject, '100%', '600px', false);
         }
-        return $html;
-    }
-
-    /**
-     * Display the saved content from the editor in the view table.
-     *
-     * @param stdClass $submission
-     * @return string
-     */
-    public function view(stdClass $submission): string {
-        $html = '';
-        // It will display always the full editor.
-        $xmlproject = $this->get_xmlproject($submission);
-        $html = $this->get_view_snapframe($submission->userid, $submission->attemptnumber, 'noedit', $xmlproject);
-
         return $html;
     }
 
@@ -373,23 +337,20 @@ class assign_submission_#snapPluginName# extends assign_submission_plugin {
     }
 
     /**
-     * Return the #snapPluginApp# project wrapped iframe.
+     * Return the #snapPluginApp# project content with the plugin toolbar.
      *
-     * There are several modes supported:
-     *   - edit: the editor is displayed. Before leaving the page, a warning is displayed to avoid loose changes.
-     *   - no edit: the full editor is displayed but no warning is displayed when the user leaves the page.
-     *   - embed: only the player with the Snap! content is displayed (so no scripts & friends are displayed).
      *
      * @param  string $userid The author of this Snap! content.
      * @param  string $attempt The attepmt number.
-     * @param  string $mode 'edit', 'noedit' or 'embed'.
+     * @param  bool $loaded true to load xml project and false to show a button.
      * @param  string $xmlproject The XML with the Snap! project to display.
-     * @param  string $width iframe width.
-     * @param  string $height  iframe height.
-     * @return string the iframe to display the #snapPluginApp# content.
+     * @param  string $width of the content container.
+     * @param  string $height of the content container.
+     * @param  bool $editable Edit or read-only view.
+     * @return string the html to display the #snapPluginApp# content.
      */
-    private function get_view_snapframe(string $userid, string $attempt, string $mode = 'edit', string $xmlproject = null,
-            string $width = '100%', string $height = '600px', bool $editable = false, bool $ihidden = false): string {
+    private function get_view_snapframe(string $userid, string $attempt, bool $loaded = false, string $xmlproject = null,
+            string $width = '100%', string $height = '600px', bool $editable = false): string {
         global $CFG, $OUTPUT, $USER;
 
         $template = new \stdClass();
@@ -402,13 +363,12 @@ class assign_submission_#snapPluginName# extends assign_submission_plugin {
         }
         $template->userid = $userid;
         $template->attempt = $attempt;
-        $template->snapmode = $mode;
+        $template->loaded = $loaded;
         $template->width = $width;
         $template->height = $height;
         $template->editable = $editable;
-        $template->ihidden = $ihidden;
 
-        $html = $OUTPUT->render_from_template('assignsubmission_snap/snapview', $template);
+        $html = $OUTPUT->render_from_template('assignsubmission_#snapPluginName#/snapview', $template);
 
         return $html;
     }
@@ -428,7 +388,7 @@ class assign_submission_#snapPluginName# extends assign_submission_plugin {
             }
         }
 
-        return $xmlproject;
+        return str_replace(array("&#xD;", "\r", "\n"), "", $xmlproject);
     }
 
     /**
@@ -443,14 +403,14 @@ class assign_submission_#snapPluginName# extends assign_submission_plugin {
                                        'mod_assign',
                                        'introattachment',
                                        false,
-                                       null,
+                                       'timemodified DESC', //choose the newest if there is more than one
                                        false);
         foreach ($fsfiles as $file) {
             if ($file->get_mimetype() == 'application/xml') {
                 $content = $file->get_content();
                 if (strpos($content, 'app="#snapPluginApp#')) {
                     // This is a #snapPluginApp# file. Use it as template (instead of displaying an empty project to the students).
-                    return $content;
+                    return str_replace(array("&#xD;", "\r", "\n"), "", $content);
                 }
             }
         }

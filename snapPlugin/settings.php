@@ -27,3 +27,7 @@ defined('MOODLE_INTERNAL') || die;
 $settings->add(new admin_setting_configcheckbox('assignsubmission_#snapPluginName#/default',
                    new lang_string('default', 'assignsubmission_#snapPluginName#'),
                    new lang_string('default_help', 'assignsubmission_#snapPluginName#'), 0));
+$settings->add(new admin_setting_heading('assignsubmission_#snapPluginName#/info',
+                   get_string('#snapPluginName#_urlInfo', 'assignsubmission_#snapPluginName#'),
+                   get_string('#snapPluginName#_urlInfoDetails', 'assignsubmission_#snapPluginName#').
+                       " <a href='$CFG->wwwroot/mod/assign/submission/#snapPluginName#/run/index.html'>$CFG->wwwroot/mod/assign/submission/#snapPluginName#/run/index.html</a>")) ;
