@@ -1,0 +1,11 @@
+# Snap! distros
+- Snap! (https://snap.berkeley.edu/)  (https://github.com/jmoenig/snap)
+- Snap4Arduino  (http://snap4arduino.rocks/)  (https://github.com/bromagosa/snap4arduino)
+- BeetleBlocks  (http://www.beetleblocks.com/)  (https://github.com/ericrosenbaum/BeetleBlocks)
+- TurtleStitch  (https://www.turtlestitch.org/)  (https://github.com/backface/turtlestitch)
+
+## Moodle Plugins 1.0 (20201004)
+- **Snap! submissions 1.0** with Snap! 6.2.4 (20201110)
+- **Snap4Arduino submissions 1.0** with Snap4Arduino 6.2 (20200901)
+- **BeetleBlocks submissions 1.0** with BeetleBlocks 5.3.2 (20200623)
+- **TurtleStitch submissions 1.0** with TurtleStitch 2.6 (20200731)
