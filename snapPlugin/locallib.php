@@ -60,7 +60,7 @@ class assign_submission_#snapPluginName# extends assign_submission_plugin {
         // Add the #snapPluginApp# iframe.
         $mform->addElement('hidden', '#snapPluginName#_xmlproject', $xmlproject);
         $mform->setType('#snapPluginName#_xmlproject', PARAM_RAW);
-        
+
         $html = $this->get_view_snapframe($submission->userid, $submission->attemptnumber, true, null, '100%', '560px', true);
         $mform->addElement('header', '#snapPluginName#Project', get_string('#snapPluginName#_project', 'assignsubmission_#snapPluginName#'));
         $mform->addElement('html', $html, $this->get_name(), null, null);
@@ -403,7 +403,7 @@ class assign_submission_#snapPluginName# extends assign_submission_plugin {
                                        'mod_assign',
                                        'introattachment',
                                        false,
-                                       'timemodified DESC', //choose the newest if there is more than one
+                                       'timemodified DESC', // Choose the newest if there is more than one.
                                        false);
         foreach ($fsfiles as $file) {
             if ($file->get_mimetype() == 'application/xml') {

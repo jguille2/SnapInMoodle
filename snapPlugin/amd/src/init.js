@@ -69,7 +69,7 @@ const getIDE = (userid, attemptNumber) => {
             return snapWorld.children[0];
         }
     }
-    return;
+    return false;
 };
 
 const getXMLProject = () => {
@@ -98,14 +98,17 @@ const customizeSnap = (snapIDE) => {
     // Adding #snapPluginApp# embedded info to #snapPluginApp# menu
     if (snapIDE.snapMenu) {
         snapIDE.sourceSnapMenu = snapIDE.snapMenu;
-        Str.get_string('#snapPluginName#_embedded', 'assignsubmission_#snapPluginName#').then(function(str) {
-            snapIDE.snapMenu = function () {
+        Str.get_string('#snapPluginName#_embedded', 'assignsubmission_#snapPluginName#').then(str => {
+            snapIDE.snapMenu = function() {
                 this.sourceSnapMenu();
                 var menu = this.world().activeMenu;
                 menu.addLine();
                 menu.addItem(str);
                 menu.popup(this.world(), this.logo.bottomLeft());
             };
+            return true;
+        }).catch(() => {
+            return false;
         });
     }
     // Erasing cloud button

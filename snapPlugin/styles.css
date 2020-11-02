@@ -7,8 +7,8 @@
 
 /* Style plugin button */
 .snap-button_#snapPluginName# {
-    width:112px;
-    height:43px;
+    width: 112px;
+    height: 43px;
     background-color: #555;
 }
 
@@ -36,13 +36,13 @@
 .snap-navbar_#snapPluginName# a:not([class]):focus,
 .snap-button_#snapPluginName# a:not([class]):focus {
     background-color: #555;
-    box-shadow:none;
+    box-shadow: none;
 }
 
 .snap-navbar_#snapPluginName# img.icon,
 .snap-button_#snapPluginName# img.icon {
     float: left;
-    padding: 5px 0px 5px 15px;
+    padding: 5px 0 5px 15px;
     font-size: 30px;
     width: 30px;
     height: 30px;

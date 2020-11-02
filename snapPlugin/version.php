@@ -24,7 +24,7 @@
 defined ( 'MOODLE_INTERNAL' ) || die ();
 
 $plugin->version = 2020110200;
-$plugin->requires = 2019111800; //Moodle 3.8 and 3.9 suported and tested
+$plugin->requires = 2019111800; // Moodle 3.8 and 3.9 suported and tested.
 $plugin->component = 'assignsubmission_#snapPluginName#';
 $plugin->release = 'v1.0 (#snapPluginApp# #snapPluginVersion#)';
 $plugin->maturity = MATURITY_STABLE;

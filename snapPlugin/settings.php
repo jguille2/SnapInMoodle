@@ -30,4 +30,5 @@ $settings->add(new admin_setting_configcheckbox('assignsubmission_#snapPluginNam
 $settings->add(new admin_setting_heading('assignsubmission_#snapPluginName#/info',
                    get_string('#snapPluginName#_urlInfo', 'assignsubmission_#snapPluginName#'),
                    get_string('#snapPluginName#_urlInfoDetails', 'assignsubmission_#snapPluginName#').
-                       " <a href='$CFG->wwwroot/mod/assign/submission/#snapPluginName#/run/index.html'>$CFG->wwwroot/mod/assign/submission/#snapPluginName#/run/index.html</a>")) ;
+                       " <a href='$CFG->wwwroot/mod/assign/submission/#snapPluginName#/run/index.html'>".
+                       "$CFG->wwwroot/mod/assign/submission/#snapPluginName#/run/index.html</a>"));

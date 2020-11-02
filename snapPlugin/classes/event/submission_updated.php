@@ -61,6 +61,11 @@ class submission_updated extends \mod_assign\event\submission_updated {
         return $descriptionstring;
     }
 
+    /**
+     * Get objectid mapping.
+     *
+     * @return array
+     */
     public static function get_objectid_mapping() {
         // No mapping available for 'assignsubmission_#snapPluginName#'.
         return array('db' => 'assignsubmission_#snapPluginName#', 'restore' => \core\event\base::NOT_MAPPED);

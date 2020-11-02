@@ -74,7 +74,7 @@ buildPlugin() {
 }
 
 buildSnapPlugin() {
-    buildPlugin snap '6.2.2 - dev' Snap! snap
+    buildPlugin snap 6.2.4 Snap! snap
 }
 buildSnap4arduinoPlugin() {
     buildPlugin snap4arduino 6.2 Snap4Arduino snap_s4a
