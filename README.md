@@ -16,6 +16,8 @@
 
 [Students](#students) - [Teachers](#teachers) - [MoodleAdmins](#admins) - [Developers](#developers)
 
+[ScreenShots](#screenshots)
+
 ## Students
 
 Your submission will work as in **a usual assignment**, but **with a Snap! project inside**, which **you can edit and submit** like any other element of the activity.
@@ -63,3 +65,18 @@ Do you want to build your own Snap! plugin? It's easy!
 
 Cloud features are not available in your Snap*!* embedded and they are not running in your installed distro (`path/to/your/Moodle/mod/assign/submission/snap/run/`). But you can install your *own Snap*!* cloud* or you can have access to another Snap*!* cloud.
 
+## ScreenShots
+### Working with Snap*!* projects
+![Editing Snap!](docs/pluginSnap1.png)
+### Submission summary with a Snap*!* project
+![Submission view Snap!](docs/pluginSnap2.png)
+### Grading assignments with a Snap4Arduino submission
+![Grading Snap!](docs/pluginSnap4Arduino3.png)
+### Working with Snap4Arduino projects
+![Editing Snap4Arduino](docs/pluginSnap4Arduino1.png)
+### Submission summary with 3 different projects
+![Submission view with 3 projects](docs/plugin3Snaps2.png)
+### Working with a BeetleBlocks project
+![Editing BeetleBlocks](docs/pluginBeetleBlocks1.png)
+### Working with a TurtleStitch project
+![Editing TurtleStitch](docs/pluginTurtleStitch1.png)
