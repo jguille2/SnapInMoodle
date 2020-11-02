@@ -4,6 +4,8 @@
 - **Everything runs in your Moodle server** (users, projects...and even your Snap! distro)
 - It is **a Moodle assignment submission plugin**, adding this feature to any of your assignment activities.
 
+- Available with English, Spanish and Catalan translations.
+
 ## Download and play!
 - ![Snap! plugin picture](assets/snapMoodle.png)  **[Snap! submissions 1.0](https://github.com/jguille2/SnapInMoodle/releases/download/v1.0/snap.zip)**  _(Snap! 6.2.4)_
 - ![Snap4Arduino plugin picture](assets/snap4arduinoMoodle.png)  **[Snap4Arduino submissions 1.0](https://github.com/jguille2/SnapInMoodle/releases/download/v1.0/snap4arduino.zip)**  _(SnapArduino 6.2)_
