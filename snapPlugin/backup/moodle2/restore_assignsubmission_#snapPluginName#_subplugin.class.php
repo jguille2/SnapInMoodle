@@ -67,7 +67,7 @@ class restore_assignsubmission_#snapPluginName#_subplugin extends restore_subplu
         // when a submission node is processed.
         $data->submission = $this->get_mappingid('submission', $data->submission);
 
-        $DB->insert_record('assignsubmission_#snapPluginName#', $data);
+        $DB->insert_record('assignsubmission_#snapPluginTable#', $data);
 
         $this->add_related_files('assignsubmission_#snapPluginName#', 'submission_#snapPluginName#', 'submission', null, $oldsubmissionid);
     }

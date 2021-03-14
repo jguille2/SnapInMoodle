@@ -50,7 +50,7 @@ class backup_assignsubmission_#snapPluginName#_subplugin extends backup_subplugi
         $subpluginwrapper->add_child($subpluginelement);
 
         // Set source to populate the data.
-        $subpluginelement->set_source_table('assignsubmission_#snapPluginName#',
+        $subpluginelement->set_source_table('assignsubmission_#snapPluginTable#',
                                           ['submission' => backup::VAR_PARENTID]);
 
         $subpluginelement->annotate_files('assignsubmission_#snapPluginName#', 'submission_#snapPluginName#', 'submission');

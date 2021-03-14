@@ -57,7 +57,7 @@ class provider implements
                     'submission' => 'privacy:metadata:submissionpurpose',
                     '#snapPluginName#_xmlproject' => 'privacy:metadata:textpurpose'
                   ];
-        $collection->add_database_table('assignsubmission_#snapPluginName#', $detail, 'privacy:metadata:tablepurpose');
+        $collection->add_database_table('assignsubmission_#snapPluginTable#', $detail, 'privacy:metadata:tablepurpose');
         return $collection;
     }
 
@@ -140,7 +140,7 @@ class provider implements
         \core_plagiarism\privacy\provider::delete_plagiarism_for_context($requestdata->get_context());
 
         // Delete the records in the table.
-        $DB->delete_records('assignsubmission_#snapPluginName#', ['assignment' => $requestdata->get_assignid()]);
+        $DB->delete_records('assignsubmission_#snapPluginTable#', ['assignment' => $requestdata->get_assignid()]);
     }
 
     /**
@@ -156,7 +156,7 @@ class provider implements
         $submissionid = $deletedata->get_pluginobject()->id;
 
         // Delete the records in the table.
-        $DB->delete_records('assignsubmission_#snapPluginName#', ['assignment' => $deletedata->get_assignid(),
+        $DB->delete_records('assignsubmission_#snapPluginTable#', ['assignment' => $deletedata->get_assignid(),
                 'submission' => $submissionid]);
     }
 
@@ -178,6 +178,6 @@ class provider implements
         }
 
         $params['assignid'] = $deletedata->get_assignid();
-        $DB->delete_records_select('assignsubmission_#snapPluginName#', "assignment = :assignid AND submission $sql", $params);
+        $DB->delete_records_select('assignsubmission_#snapPluginTable#', "assignment = :assignid AND submission $sql", $params);
     }
 }

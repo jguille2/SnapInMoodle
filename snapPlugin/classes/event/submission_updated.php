@@ -40,7 +40,7 @@ class submission_updated extends \mod_assign\event\submission_updated {
      */
     protected function init() {
         parent::init();
-        $this->data['objecttable'] = 'assignsubmission_#snapPluginName#';
+        $this->data['objecttable'] = 'assignsubmission_#snapPluginTable#';
     }
 
     /**
@@ -68,6 +68,6 @@ class submission_updated extends \mod_assign\event\submission_updated {
      */
     public static function get_objectid_mapping() {
         // No mapping available for 'assignsubmission_#snapPluginName#'.
-        return array('db' => 'assignsubmission_#snapPluginName#', 'restore' => \core\event\base::NOT_MAPPED);
+        return array('db' => 'assignsubmission_#snapPluginTable#', 'restore' => \core\event\base::NOT_MAPPED);
     }
 }
