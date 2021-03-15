@@ -7,10 +7,10 @@
 - Available with English, Spanish and Catalan translations.
 
 ## Download and play!
-- ![Snap! plugin picture](assets/snapMoodle.png)  **[Snap! submissions 1.0](https://github.com/jguille2/SnapInMoodle/releases/download/v1.0/snap.zip)**  _(Snap! 6.2.4)_
-- ![Snap4Arduino plugin picture](assets/snap4arduinoMoodle.png)  **[Snap4Arduino submissions 1.0](https://github.com/jguille2/SnapInMoodle/releases/download/v1.0/snap4arduino.zip)**  _(SnapArduino 6.2)_
-- ![BeetleBlocks plugin picture](assets/beetleblocksMoodle.png)  **[BeetleBlocks submissions 1.0](https://github.com/jguille2/SnapInMoodle/releases/download/v1.0/beetleblocks.zip)**  _(BeetleBlocks 5.3.2)_
-- ![TurtleStitch plugin picture](assets/turtlestitchMoodle.png)  **[TurtleStitch submissions 1.0](https://github.com/jguille2/SnapInMoodle/releases/download/v1.0/turtlestitch.zip)**  _(TurtleStitch 2.6)_
+- ![Snap! plugin picture](assets/snapMoodle.png)  **Snap! submissions 1.1** _(Snap! 6.7.1)_ Download [here](https://github.com/jguille2/SnapInMoodle/releases/download/v1.1/snap.zip) or in [Moodle Plugins site](https://moodle.org/plugins/assignsubmission_snap) 
+- ![Snap4Arduino plugin picture](assets/snap4arduinoMoodle.png)  **Snap4Arduino submissions 1.1** _(SnapArduino 6.7.1)_ Download [here](https://github.com/jguille2/SnapInMoodle/releases/download/v1.1/snap4arduino.zip) or in [Moodle Plugins site](https://moodle.org/plugins/assignsubmission_snap4arduino)
+- ![BeetleBlocks plugin picture](assets/beetleblocksMoodle.png)  **BeetleBlocks submissions 1.1** _(BeetleBlocks 5.3.2)_ Download [here](https://github.com/jguille2/SnapInMoodle/releases/download/v1.1/beetleblocks.zip) or in [Moodle Plugins site](https://moodle.org/plugins/assignsubmission_beetleblocks)
+- ![TurtleStitch plugin picture](assets/turtlestitchMoodle.png)  **TurtleStitch submissions 1.1** _(TurtleStitch 2.6.1)_ Download [here](https://github.com/jguille2/SnapInMoodle/releases/download/v1.1/turtlestitch.zip) or in [Moodle Plugins site](https://moodle.org/plugins/assignsubmission_turtlestitch) 
 
 ## Documentation
 
