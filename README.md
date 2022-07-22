@@ -1,4 +1,7 @@
 # Snap! Moodle plugins ![Snap! plugin picture](assets/snapMoodle.png)
+
+## This repo has all the info about Snap! Moodle plugins (developed in other repos) and it keeps the maintenance of the legacy plugins (to use Snap! old versions and some Snap! flavours).
+
 ## Add to your Moodle activities the ability to include Snap! projects
 - You can include **Snap!**, **Snap4Arduino**, **Beetleblocks**, **TurtleStitch** or your own Snap! customization
 - **Everything runs in your Moodle server** (users, projects...and even your Snap! distro)
