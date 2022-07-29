@@ -1,15 +1,18 @@
 # Snap! Moodle plugins ![Snap! plugin picture](assets/snapMoodle.png)
 
-## This repo has all the info about Snap! Moodle plugins (developed in other repos) and it keeps the maintenance of the legacy plugins (to use Snap! old versions and some Snap! flavours).
+## Moodle Snap! submissions
 
-## Add to your Moodle activities the ability to include Snap! projects
-- You can include **Snap!**, **Snap4Arduino**, **Beetleblocks**, **TurtleStitch** or your own Snap! customization
+Check [Snap! submissions v2.0](https://moodle.org/plugins/assignsubmission_snap) to add Snap!, Snap4Arduino... to your Moodle activities.
+More info and support on its [plugin repo](https://github.com/jguille2/moodle-assignsubmission_snap)
+
+## Documentation and legacy plugins
+- Snap! distros (Snap!, Snap4Arduino...) must be based on **snap! version 7 or higher** to use them with **Snap! submissions v2**. If you need older versions of Snap! or a non well mantained distro, you can check the old static versions related in the Snap! in Moodle project for Snap!, Snap4Arduino, BeetleBlocks and TurtleStitch.
+- With these legacy plugins, and this repo info, you can include **Snap!**, **Snap4Arduino**, **Beetleblocks**, **TurtleStitch** or your own Snap! customization
 - **Everything runs in your Moodle server** (users, projects...and even your Snap! distro)
 - It is **a Moodle assignment submission plugin**, adding this feature to any of your assignment activities.
-
 - Available with English, Spanish and Catalan translations.
 
-## Download and play!
+## Legacy plugins
 - ![Snap! plugin picture](assets/snapMoodle.png)  **Snap! submissions 1.1** _(Snap! 6.7.1)_ Download [here](https://github.com/jguille2/SnapInMoodle/releases/download/v1.1/snap.zip) or in [Moodle Plugins site](https://moodle.org/plugins/assignsubmission_snap) 
 - ![Snap4Arduino plugin picture](assets/snap4arduinoMoodle.png)  **Snap4Arduino submissions 1.1** _(SnapArduino 6.7.1)_ Download [here](https://github.com/jguille2/SnapInMoodle/releases/download/v1.1/snap4arduino.zip) or in [Moodle Plugins site](https://moodle.org/plugins/assignsubmission_snap4arduino)
 - ![BeetleBlocks plugin picture](assets/beetleblocksMoodle.png)  **BeetleBlocks submissions 1.1** _(BeetleBlocks 5.3.2)_ Download [here](https://github.com/jguille2/SnapInMoodle/releases/download/v1.1/beetleblocks.zip) or in [Moodle Plugins site](https://moodle.org/plugins/assignsubmission_beetleblocks)
